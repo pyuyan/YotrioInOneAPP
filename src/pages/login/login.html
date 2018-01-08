@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        登录系统
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button solid title="应用配置" icon-only (click)="doConfig()">
+          <ion-icon name="cog"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding id="Login" overflow-scroll="false" style="background-image:url(../../assets/imgs/bg_box_management.png);overflow:auto;">
+        <form id="Login-form2" >
+          <div style="align-content: center;width:100%;"><img src="../../assets/imgs/banner.png" /></div>
+          <ion-card id="login-card">
+          <ion-list id="Login-list1">
+              <ion-item id="Login-username">
+                <ion-label stacked>用户名</ion-label>
+                <ion-input type="text" placeholder="请输入账号" name="Txt_Username" [(ngModel)]="logindata.UserCode"></ion-input>
+              </ion-item>
+              <ion-item id="Login-userpass">
+                <ion-label stacked>密码</ion-label>
+                <ion-input type="password" placeholder="请输入密码" name="Txt_Pass" [(ngModel)]="logindata.UserPass"></ion-input>
+              </ion-item>
+              <ion-item id="Login-orgselect">
+                  <ion-label stacked>
+                    组织 &nbsp; &nbsp;
+                  </ion-label>
+                  <ion-select style="text-align:left;" [(ngModel)]="logindata.OrgID" cancelText="取消" okText="确定"  name="Combo_Org" #selected (ionChange)="onOrgChange(selected)">
+                    <ion-option *ngFor="let orginfo of orginfos.LoginOrgs.LoginOrg" [value]=orginfo.ID>{{orginfo.Code}}-{{orginfo.Name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+            <button id="Login-button1" ion-button color="positive" block (click)="doLogin()">
+              <ion-icon name="cloudy"></ion-icon>
+              &nbsp; &nbsp;登录
+            </button>
+            <button id="Login-button3" ion-button color="stable" block (click)="doReset()">
+              <ion-icon name="cog"></ion-icon>
+              &nbsp; &nbsp;重置密码
+            </button>
+          </form>
+  </ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+            <button ion-button [menuToggle]="activeMenu">
+                    <ion-icon name="menu"></ion-icon>
+                  </button>        
+      <ion-buttons start>
+        <button ion-button solid title="退出登录" icon-only (click)="rootnavtool.doLogout()">
+            <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        生产管理门户
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding id="MFG-content" overflow-scroll="false" style="overflow:auto;">
+    <ion-list>
+            <img src="assets/imgs/Factory.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+            <ion-card id="MFG-card21">
+                    <ion-card-header>
+                        车间管理
+                    </ion-card-header>
+                    <ion-grid >
+                        <ion-row>
+                            <ion-col>
+                                <div (click)="OpenSetWorkTaskPage()">
+                                    <ion-icon name='clipboard' is-active="true" ><br><br>车间派工</ion-icon>
+                                </div>
+                              </ion-col>
+                              <ion-col>
+                                  <div (click)="OpenCompPage()">
+                                    <ion-icon name='cog' is-active="true" ><br><br>报工点收</ion-icon>
+                                  </div>
+                              </ion-col>
+                        </ion-row>
+                        <ion-row>
+                              <ion-col>
+                                  <div (click)="OpenManagePage()">
+                                    <ion-icon name='stats' is-active="true" ><br><br>班长查询</ion-icon>
+                                  </div>
+                              </ion-col>
+                              <ion-col>
+                                  <div (click)="OpenEmployeePage()">
+                                    <ion-icon name='happy' is-active="true" ><br><br>员工自查</ion-icon>
+                                  </div>
+                              </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                  </ion-card>
+    </ion-list>
+    <ion-footer>
+        <ion-toolbar>
+            <p>{{contextdata.GetLoginContext().OrgCode}}-{{contextdata.GetLoginContext().OrgName}}</p>
+        </ion-toolbar>
+    </ion-footer>
+  </ion-content>

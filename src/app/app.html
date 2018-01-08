@@ -1,0 +1,19 @@
+<ion-nav #mainNav [root]="rootPage" swipeBackEnabled="false"></ion-nav>
+
+
+<ion-menu [content]="mainNav" id="navmenu">
+        <ion-header>
+          <ion-toolbar color="secondary">
+            <ion-title>模块导航</ion-title>
+          </ion-toolbar>
+        </ion-header>
+      
+        <ion-content>
+          <ion-list>
+            <button ion-item menuClose="navmenu" *ngFor="let rightinfo of contextdata.GetRightContext()" (click)="rootnavtool.NavToTargetModule(rightinfo)" > 
+                <ion-icon name={{rightinfo.IconName}} item-start></ion-icon>
+                <ion-label>{{rightinfo.ModuleName}}</ion-label>
+            </button>
+          </ion-list>
+        </ion-content>
+  </ion-menu>

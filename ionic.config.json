@@ -1,0 +1,14 @@
+{
+  "name": "YotrioInOneAPP",
+  "app_id": "9df707be",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/u9login",
+      "proxyUrl": "http://192.166.0.155:8280"
+    }
+  ]
+}

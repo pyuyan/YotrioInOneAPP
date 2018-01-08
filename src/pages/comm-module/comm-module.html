@@ -1,0 +1,28 @@
+<!--
+  公共门户页
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons start>
+      <button ion-button solid title="退出登录" icon-only (click)="rootnavtool.doLogout()">
+          <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      公共门户
+    </ion-title>
+    <ion-buttons end>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="COMM-content" overflow-scroll="false" style="overflow:auto;">
+  <div style="width:100%">
+      <img src="../../assets/imgs/Factory.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+  </div>
+</ion-content>
