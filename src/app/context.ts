@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ContextData {
 
-    static instance:ContextData;
+  static instance:ContextData;
 
   static inited:boolean = false;
 
@@ -58,6 +58,8 @@ export class ContextData {
         ModuleName:'公共门户',
         IconName:'home',
         PageName:'CommModulePage',
+        FuncNum:3,
+        IsDefault:'N',
         SubFuncs:[
             {
                 FuncID:'COMM_01',
@@ -72,13 +74,6 @@ export class ContextData {
                 IconName:'chatboxes',
                 PageName:'MessagePage',
                 FuncIdx:2
-            },
-            {
-                FuncID:'COMM_03',
-                FuncName:'密码修改',
-                IconName:'key',
-                PageName:'ResetpassPage',
-                FuncIdx:3
             }
         ]
       },
@@ -87,6 +82,8 @@ export class ContextData {
         ModuleName:'质量检验',
         IconName:'icon-QCC',
         PageName:'QccModulePage',
+        FuncNum:1,
+        IsDefault:'Y',
         SubFuncs:[
             {
                 FuncID:'QCC_01',
@@ -102,6 +99,8 @@ export class ContextData {
         ModuleName:'生产管理',
         IconName:'icon-MFG',
         PageName:'MfgModulePage',
+        FuncNum:4,
+        IsDefault:'N',
         SubFuncs:[
             {
                 FuncID:'MFG_01',
@@ -136,6 +135,17 @@ export class ContextData {
     );
     
     ContextData.inited = true;
+  }
+
+  //服务器地址
+  static ESBPortal:string = null;
+
+  SetESBPortal(url:string){
+    ContextData.ESBPortal = url;
+  }
+
+  GetESBPortal():any{
+    return ContextData.ESBPortal;
   }
 
   GetRightContext():any{

@@ -10,23 +10,27 @@ import { NgxEchartsModule } from 'ngx-echarts';
 @NgModule({
   declarations: [
     MfgModulePage,
-    ManagePage,
     EmployeePage,
     CompPage,
+    ManagePage,
     SetWorkTaskPage
   ],
   imports: [
     IonicPageModule.forChild(MfgModulePage),
-    NgxEchartsModule
+    NgxEchartsModule,
   ],
   entryComponents: [
-    ManagePage,
     EmployeePage,
     CompPage,
+    ManagePage,
     SetWorkTaskPage
   ],
   exports: [
-    MfgModulePage
-  ]
+    MfgModulePage,
+    EmployeePage,
+    CompPage,
+    ManagePage,
+    SetWorkTaskPage
+  ],
 })
 export class MfgModulePageModule {}

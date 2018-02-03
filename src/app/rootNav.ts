@@ -1,6 +1,7 @@
 import { CommModulePage } from "../pages/comm-module/comm-module";
 import { LoginPage } from "../pages/login/login";
 import { QccModulePage } from "../pages/qcc-module/qcc-module";
+import { MfgModulePage } from "../pages/mfg-module/mfg-module"
 import { ContextData } from "./context";
 import { NavController } from "ionic-angular/navigation/nav-controller";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
@@ -51,18 +52,30 @@ import { Injectable } from "@angular/core";
    /**
    * 导航到目标模块
    */
-  NavToTargetModule(rightinfo:any){
-    RootNavTool.mainNav.setRoot(rightinfo.PageName);
+  NavToTargetModule(rightinfo:any,childnav:NavController){
+    RootNavTool.mainNav.setRoot(rightinfo.PageName,{ModuleInfo:rightinfo});
   }
 
-/**
+  /**
    * 导航到目标功能页面
    */
-  NavToTargetFunc(rightinfo:any){
-    RootNavTool.mainNav.push(rightinfo.PageName);
+  NavToTargetFunc(funcinfo:any){
+    RootNavTool.mainNav.push(funcinfo.PageName,{FunctionInfo:funcinfo});
   }
 
-      /**
+  /**
+   * 导航到默认模块
+   */
+  NavToDefaultModule(){
+    for (const moduleinfo of RootNavTool.context.GetRightContext()) {
+      if(moduleinfo.IsDefault==='Y'){
+        RootNavTool.mainNav.setRoot(moduleinfo.PageName,{ModuleInfo:moduleinfo});
+        break;
+      }
+    }
+  }
+  
+  /**
    * 打开登录页
    */
   OpenLoginPage(){

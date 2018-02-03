@@ -7,8 +7,12 @@
   },
   "proxies": [
     {
-      "path": "/u9login",
-      "proxyUrl": "http://192.166.0.155:8280"
+      "path": "/esbsv",
+      "proxyUrl": "http://192.168.0.197:8280"
+    },
+    {
+      "path": "/openkm",
+      "proxyUrl":"http://192.168.0.97:8080/OpenKM"
     }
   ]
 }

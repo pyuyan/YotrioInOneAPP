@@ -7,6 +7,8 @@ import "rxjs/add/operator/map";
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { File } from '@ionic-native/file';
 import { Storage } from '@ionic/storage';
+import { ContextData } from '../../app/context';
+import { RootNavTool } from '../../app/rootNav';
 
 /**
  * 1、读取assets/json/config.json值
@@ -27,11 +29,19 @@ export class ConfigPage {
 
   jsondata:any;
 
+  contextdata:ContextData;
+  rootnavtool:RootNavTool;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private http:Http,
               private alterCtrl:AlertController,
               private file:File,
               private storage: Storage) {
+
+      //初始化上下文
+      this.contextdata = ContextData.Create();
+      //初始化导航器
+      this.rootnavtool = RootNavTool.Create();
   }
 
   /**
@@ -45,8 +55,9 @@ export class ConfigPage {
       then((res:any)=>{
         
         console.log("DONE WRITING");
-        this.storage.set('U9Portal',this.pagedata.U9Portal).then(value=>{});
-        this.storage.set('ESBPortal',this.pagedata.ESBPortal).then(value=>{});
+        //this.storage.set('U9Portal',this.pagedata.U9Portal).then(value=>{});
+        //this.storage.set('ESBPortal',this.pagedata.ESBPortal).then(value=>{});
+        this.contextdata.SetESBPortal(this.pagedata.ESBPortal);
 
         try{
           this.navCtrl.pop();

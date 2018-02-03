@@ -21,8 +21,28 @@
 </ion-header>
 
 
-<ion-content padding id="COMM-content" overflow-scroll="false" style="overflow:auto;">
-  <div style="width:100%">
-      <img src="../../assets/imgs/Factory.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
-  </div>
+<ion-content padding id={{ModuleInfo.ModuleID}} style="overflow:auto;">
+    <img id="photo-fullscreen" src="assets/imgs/Factory.jpg" style="width:100%">
+    <ion-card id="{{ModuleInfo.ModuleID}}-card" >
+        <ion-card-header>
+            <ion-icon name={{ModuleInfo.IconName}} item-left=""></ion-icon>
+            {{ModuleInfo.ModuleName}}
+        </ion-card-header>
+        <ion-grid style="align-content:left">
+          <ion-row *ngFor="let row of GetRowCount()">
+              <ng-container *ngFor="let funcinfo of ModuleInfo.SubFuncs">
+                  <ion-col *ngIf="((row-1)*3<funcinfo.FuncIdx)&&((row*3)>=funcinfo.FuncIdx)" >
+                      <div class="carddiv" (click)="rootnavtool.NavToTargetFunc(funcinfo)">
+                          <ion-icon name={{funcinfo.IconName}} is-active="true" ><br><br>{{funcinfo.FuncName}}</ion-icon>
+                      </div>
+                    </ion-col>
+              </ng-container>
+          </ion-row>
+        </ion-grid>
+    </ion-card>
+    <ion-footer>
+        <ion-toolbar>
+            <p>{{contextdata.GetLoginContext().OrgCode}}-{{contextdata.GetLoginContext().OrgName}}</p>
+        </ion-toolbar>
+    </ion-footer>
 </ion-content>

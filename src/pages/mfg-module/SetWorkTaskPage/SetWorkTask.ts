@@ -13,6 +13,14 @@ import { FormBuilder,Validators } from '@angular/forms'
 })
 export class SetWorkTaskPage {
 
+  FunctionInfo:any = {
+    FuncID:'',
+    FuncName:'',
+    IconName:'',
+    PageName:'',
+    FuncIdx:1
+  }
+
   constructor(public navCtrl: NavController,
     private formBuilder: FormBuilder,
     public navParams: NavParams) {

@@ -14,6 +14,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EmployeePage {
 
+  FunctionInfo:any = {
+    FuncID:'',
+    FuncName:'',
+    IconName:'',
+    PageName:'',
+    FuncIdx:1
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 

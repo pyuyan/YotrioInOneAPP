@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpRequest,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpRequest } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { ContextData } from '../../app/context';
+import { Platform } from 'ionic-angular/platform/platform';
 
 /*
 U9系统登录登出服务操作
@@ -16,38 +15,54 @@ export class LoginsvrProvider {
     'Content-Type': 'application/json'
   });
 
-  constructor(public http: HttpClient,
-              private storage: Storage) {
+  contextdata:ContextData;
 
+  constructor(public http: HttpClient,
+              public storage: Storage,
+              public platform:Platform) {
+      //初始化上下文
+      this.contextdata = ContextData.Create();
+  }
+
+  /**
+   * 获取ESB服务器地址
+   */
+  private GetESBAddress():string{
+    let str = this.contextdata.GetESBPortal();
+    if(str===null){
+      str = "/esbsv";
+    }
+    if(this.platform.is('mobileweb'))
+      str = "/esbsv";
+    console.log(str);
+    console.log(this.platform);
+    return str;
   }
 
   /*
   登录U9系统
   */
-  doLogin(OrgCode:string,OrgID:string,loginUserCode:string,password:string):Promise<Observable<Object>>{
+  doLogin(orgCode:string,orgID:string,loginusercode:string,passWord:string):Observable<Object>{
     let currUrl = '';
-    return this.storage.get('ESBPortal').then(str=>{
-      console.log(str);
-      if(str===null){
-        str = "/u9login";
-      }
-      currUrl = str +'/u9login/Do?OrgCode='+OrgCode+'&OrgID='+OrgID+'&loginUserCode='+loginUserCode+'&password='+password;
-      console.log('Send Login Request to '+currUrl); 
-      return this.http.get(currUrl,{'headers':this.headers});
-    });
+    let requestbody = {
+      OrgCode:orgCode,
+      OrgID:orgID,
+      loginUserCode:loginusercode,
+      password:passWord
+   }
+    currUrl = this.GetESBAddress() +'/u9login/Do';
+    //console.log('Send Login Request to '+currUrl); 
+    return this.http.post(currUrl,requestbody,{headers:this.headers});
   }
 
   /**
    * 获取登录组织信息
    */
-  getOrgInfos():Promise<Observable<Object>>{
+  getOrgInfos():Observable<Object>{
     let currUrl = '';
-    return this.storage.get('ESBPortal').then(str=>{
-      console.log(str);
-      currUrl = str +'/getorgs/orgs';
-      console.log('Send GetOrg Request to '+currUrl); 
-      return this.http.get(currUrl,{'headers':this.headers});
-    });
+    currUrl = this.GetESBAddress() +'/getorgs/orgs';
+    console.log('Send GetOrg Request to '+currUrl); 
+    return this.http.get(currUrl,{headers:this.headers});
   }
 
 }

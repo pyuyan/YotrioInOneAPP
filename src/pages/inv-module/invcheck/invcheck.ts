@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the InvcheckPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * 库存盘点
  */
 
 @Component({
@@ -13,6 +10,14 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'invcheck.html',
 })
 export class InvcheckPage {
+
+  FunctionInfo:any = {
+    FuncID:'',
+    FuncName:'',
+    IconName:'',
+    PageName:'',
+    FuncIdx:1
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -17,7 +17,13 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 })
 export class CompPage {
 
-
+  FunctionInfo:any = {
+    FuncID:'',
+    FuncName:'',
+    IconName:'',
+    PageName:'',
+    FuncIdx:1
+  }
 
   constructor(public navCtrl: NavController,
     private formBuilder: FormBuilder,

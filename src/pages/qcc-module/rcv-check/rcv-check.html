@@ -4,12 +4,69 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>采购收货质量检查</ion-title>
+    <ion-title>{{FunctionInfo.FuncName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding id={{FunctionInfo.FuncID}} style="overflow:scroll;" >
+    <ion-list>
+      <ion-item>
+        <ion-label>收货单</ion-label>
+        <ion-input [(ngModel)]="rcvinfo.RecNo" #RcvNo ></ion-input>
+        <button ion-button solid title="退出登录" icon-only item-right color="secondary" (click)="OpenCamScanner()">
+            <ion-icon name="qr-scanner" ></ion-icon>
+        </button>
+      </ion-item>
+      <ion-item>
+          <ion-label>供应商</ion-label>
+          <ion-note item-end>
+            {{rcvinfo.SupplierName}}
+          </ion-note>
+      </ion-item>
+      <ion-item>
+          <ion-label>物料编号</ion-label>
+          <ion-note item-end>
+            {{rcvinfo.ItemCode}}
+          </ion-note>
+      </ion-item>
+      <ion-item>
+          <ion-label>物料名称</ion-label> 
+          <ion-note item-end>
+            {{rcvinfo.ItemName}}
+          </ion-note>
+      </ion-item>
+      <ion-item>
+          <ion-label>收货数量</ion-label>
+          <ion-note item-end>
+            {{rcvinfo.RcvQtySU}}
+          </ion-note>
+      </ion-item>
+      <ion-item>
+          <ion-label>检验结论</ion-label>
+          <ion-select [(ngModel)]="rcvinfo.ResultCode" interface="popover">
+            <ion-option value="QCOK">合格</ion-option>
+            <ion-option value="QCFailed">不合格</ion-option>
+            <ion-option value="QCUnConfirm">待定</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-row item-start>
+                <div (click)="OpenImageBrowser()"><ion-col><ion-icon name="image" color="secondary"></ion-icon></ion-col></div>
+                <div showWhen="android,ios,windows" (click)="OpenCamera()"><ion-col><ion-icon name="camera" color="bright"></ion-icon></ion-col></div>
+                <div (click)="UploadImageFile()"><ion-col><ion-icon name="ios-folder" color="primary"></ion-icon></ion-col></div>
+            </ion-row>
+          </ion-item>
+      </ion-list>
+      <button ion-button full (click)="SaveQCCDoc()">确定</button>
+      <button ion-button full color="secondary" (click)="DoCancel()">重置</button>
 
+      <!--
+    <ion-footer>
+        <ion-toolbar>
+            <p>{{contextdata.GetLoginContext().OrgCode}}-{{contextdata.GetLoginContext().OrgName}}</p>
+        </ion-toolbar>
+    </ion-footer>
+  -->
 </ion-content>

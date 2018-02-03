@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { YotrioInOneAPP } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { File } from '@ionic-native/file'
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { LoginPage } from '../pages/login/login';
 import { CommModulePage } from '../pages/comm-module/comm-module';
 import { MfgModulePage } from '../pages/mfg-module/mfg-module';
@@ -26,12 +26,15 @@ import { InvModulePageModule } from '../pages/inv-module/inv-module.module';
 import { ConfigPageModule } from '../pages/config/config.module';
 import { QccModulePageModule } from '../pages/qcc-module/qcc-module.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner'
+import { RcvQccProvider } from '../providers/rcv-qcc/rcv-qcc';
+import { DocumentsystemProvider } from '../providers/documentsystem/documentsystem';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 
 @NgModule({
   declarations: [
     YotrioInOneAPP,
-    ResetpassPage
+    ResetpassPage,
   ],
   imports: [
     LoginPageModule,
@@ -45,6 +48,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner'
     HttpClientModule,
     IonicStorageModule.forRoot(),
     NgxEchartsModule,
+    IonicImageViewerModule,
     IonicModule.forRoot(YotrioInOneAPP),
   ],
   bootstrap: [IonicApp],
@@ -64,10 +68,12 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginsvrProvider,
     File,
-    BarcodeScanner
+    BarcodeScanner,
+    RcvQccProvider,
+    DocumentsystemProvider
   ],
   exports: [
-    ResetpassPage
+    ResetpassPage,
   ]
 })
 

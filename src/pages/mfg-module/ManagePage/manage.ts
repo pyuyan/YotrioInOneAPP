@@ -10,7 +10,6 @@ import { ContextData } from '../../../app/context';
 /**
  * 组长查询页面
  */
-
 @Component({
   selector: 'page-manage',
   templateUrl: 'manage.html'
@@ -136,11 +135,19 @@ barChartInstance:any
   };
 
 
+  FunctionInfo:any = {
+    FuncID:'',
+    FuncName:'',
+    IconName:'',
+    PageName:'',
+    FuncIdx:1
+  }
+
   constructor(public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private echartsvr:NgxEchartsService, 
     public navParams: NavParams) {
-      this.logindata = this.navParams.get('logindata');
+
   }
 
   ionViewDidLoad() {

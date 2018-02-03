@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { QccModulePage } from './qcc-module';
 import { RcvCheckPage } from './rcv-check/rcv-check';
+import { RcvCheckPageModule } from './rcv-check/rcv-check.module';
+import { QCImageBrowser } from './rcv-check/rcv-check-showimg';
 
 @NgModule({
   declarations: [
     QccModulePage,
-    RcvCheckPage
+    QCImageBrowser
   ],
   imports: [
     IonicPageModule.forChild(QccModulePage),
+    RcvCheckPageModule
   ],
   entryComponents: [
-    RcvCheckPage,
+    QCImageBrowser
   ],
   exports: [
     QccModulePage

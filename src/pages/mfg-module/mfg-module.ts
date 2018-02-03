@@ -18,11 +18,43 @@ export class MfgModulePage {
   contextdata:ContextData;
   rootnavtool:RootNavTool;
 
+  ModuleInfo:any = {
+    ModuleID:'',
+    ModuleName:'',
+    IconName:'',
+    PageName:'',
+    FuncNum:0,
+    SubFuncs:[]
+  };
+
+  /**
+   * 计算功能行数
+   */
+  GetRowCount():any{
+    let rows:Array<Number> = new Array<Number>();
+    let i = 1;
+    if(this.ModuleInfo.FuncNum>0){
+      while(i<=this.ModuleInfo.FuncNum){
+        let row = Math.ceil(i/3);
+        if(rows.indexOf(row,0)<0)
+          rows.push(row);
+        i = i+1;
+      }
+    }
+
+    return rows;
+  }  
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    this.contextdata = ContextData.Create();
-    this.rootnavtool = RootNavTool.Create();
-
+      //初始化上下文
+      this.contextdata = ContextData.Create();
+      //初始化导航器
+      this.rootnavtool = RootNavTool.Create();
+      //接收模块信息
+      if(navParams){
+        this.ModuleInfo = navParams.get('ModuleInfo');
+      }
   }
 
   OpenUserInfoPage(){
