@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage,NavController, NavParams, AlertController } from 'ionic-angular';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { FormBuilder,Validators } from '@angular/forms'
 import { ViewChild,ElementRef } from '@angular/core';
@@ -11,6 +11,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner'
  * Yuyan Pan
  */
 
+@IonicPage()
 @Component({
   selector: 'page-comp',
   templateUrl: 'Comp.html',

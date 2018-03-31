@@ -13,6 +13,32 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding style="background-image:url(assets/imgs/bg_box_management.png);overflow:auto;">
+  <ion-card id="reset-card">
+    <ion-list id="reset-list1">
+        <ion-item id="reset-username">
+          <ion-label stacked>用户名</ion-label>
+          <ion-input type="text" placeholder="请输入账号" name="Txt_Username" [(ngModel)]="logindata.UserCode"></ion-input>
+        </ion-item>
+        <ion-item id="reset-vccode">
+          <ion-label stacked>验证码</ion-label>
+          <ion-input type="vccode" placeholder="请输入验证码" name="Txt_Vccode" [(ngModel)]="logindata.UserPass"></ion-input>
+          <button #sendcodebtn id="reset-sendcode" color="danger" ion-button item-end (click)="SendSMSCode()">            
+            &nbsp;发送验证码&nbsp;
+          </button>
+        </ion-item>
+        <ion-item id="reset-newpass">
+          <ion-label stacked>新密码</ion-label>
+          <ion-input type="password" placeholder="请输入新密码" name="Txt_Pass" [(ngModel)]="logindata.UserPass"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button id="reset-ok" ion-button color="positive" block >
+        <ion-icon name="cloud-done"></ion-icon>
+        &nbsp; &nbsp;确定
+      </button>
+      <button id="reset-cancel" ion-button color="stable" color="secondary" block >
+        <ion-icon name="undo"></ion-icon>
+        &nbsp; &nbsp;取消
+      </button>
+  </ion-card>
 </ion-content>

@@ -41,7 +41,8 @@ export class LoginPage {
     DeptName:'',
     Location:'',
     LocationName:'',
-    Token:''
+    Token:'',
+    SaveFlag:false
   }
 
     orginfos:any = {
@@ -75,6 +76,7 @@ export class LoginPage {
                 this.logindata.OrgID = navparam.get('orgid');
                 this.logindata.OrgCode = navparam.get('orgcode');
                 this.logindata.OrgName = navparam.get('orgname');
+                this.logindata.UserPass = navparam.get('userpass');
             }
 
            //从配置文件加载远端服务器地址
@@ -124,6 +126,14 @@ export class LoginPage {
             });
         },2000);
 
+        //读取保存的登录信息
+        this.storage.get('logindata').then(result=>{
+            if(result){
+                this.logindata = result;
+            }
+        }).catch(()=>{
+      
+        });
     }
 
     /**
@@ -171,6 +181,12 @@ export class LoginPage {
                   loginresult = data['DoResponse']['DoResult'];
                   this.logindata.Token = loginresult;
                   this.contextdata.SetLoginContext(this.logindata);
+                  if(this.logindata.SaveFlag){
+                        this.storage.set('logindata',this.logindata).then(value=>{});
+                  }else{
+                        this.storage.set('logindata',null).then(value=>{});
+                  }
+                    
                 },
                 error:ex=>{
                   //console.log(ex);

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        {{viewtitle}}
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary" showWhen="ios">Cancel</span>
+          <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let imagedata of imagesContext">
+                <ion-thumbnail item-start>
+                  <img src="{{imagedata.content}}" #myImage (click)="PresentImage(myImage)" />
+                </ion-thumbnail>
+                <ion-note>{{imagedata.path}}</ion-note>
+                <button ion-button color="secondary" (click)="DownloadImage(imagedata)" style="float:right;clear:both;">
+                  <ion-icon name="download"></ion-icon>
+                  下载
+                </button>
+                  <button ion-button color="danger" (click)="DeleteImage(imagedata.path)" style="float:right;clear:both;">
+                  <ion-icon name="trash"></ion-icon>
+                  删除
+                </button>
+        </ion-item>
+        <!--
+        <ion-item>
+            <ion-thumbnail item-start>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAIAAAAI7H7bAAAFQElEQVR4nO3dQZIaORBAUZjw/a/ccwMt5E86i35v2wGUoX5okZbq/fPz8wL+zn//+gLgGwgJAkKCgJAgICQICAkCQoKAkCDw5/C39/s9dh25u0Hz4Z98eMP9r7pzdwPcXfx+56/XigQBIUFASBAQEgSEBAEhQUBIEBASBE4D2YMl+2qXDPjyEeTkvyufut55+h1lRYKAkCAgJAgICQJCgoCQICAkCAgJApcD2YN8mLhk42e+NfVbd5Lm9t9RLysSJIQEASFBQEgQEBIEhAQBIUFASBDoB7KPtmSf5p3JweXkycmPYEWCgJAgICQICAkCQoKAkCAgJAgICQK/cSCbb03Nn1ebsxv306xIEBASBIQEASFBQEgQEBIEhAQBIUGgH8j+wg2SS8a433py8iPuKCsSBIQEASFBQEgQEBIEhAQBIUFASBC4HMguGdXduZtp5q86WHKFk7PaR99RLysSJIQEASFBQEgQEBIEhAQBIUFASBB4P2L74Zj9j0bdP7hc8kUNsyJBQEgQEBIEhAQBIUFASBAQEgSEBIHRZ8jmR/suOSt40uS481vH05+4eCsSBIQEASFBQEgQEBIEhAQBIUFASBA4DWSXjCAP7ma1S+aMS77e/Nt49Nj9mhUJAkKCgJAgICQICAkCQoKAkCAgJAicBrKTM7LJZ63eveFBPvubfHjrks/KX3Xn+o6yIkFASBAQEgSEBAEhQUBIEBASBIQEgcsji/Nx591Y8NFT14Mlm2fv/M4Toa1IEBASBIQEASFBQEgQEBIEhAQBIUGgf4bs5IHA+58hO7kndMmG1iU/yuTO35cVCRJCgoCQICAkCAgJAkKCgJAgICQIvB89+zuY3HG55GznyVcd7N9K/IkrtCJBQEgQEBIEhAQBIUFASBAQEgSEBIHTDtn9s787+2fQk9/GkscBL7mjPEMW/iUhQUBIEBASBIQEASFBQEgQEBIE+h2y+3d3LjmJd//gcsmrHsGKBAEhQUBIEBASBIQEASFBQEgQEBIERo8s3j/gW7JRd//w9+DRP+X1XNiKBAEhQUBIEBASBIQEASFBQEgQEBIELo8snjQ5qlvy/NNHjCAv3vBbf8qXFQkSQoKAkCAgJAgICQJCgoCQICAkCJx2yC4Z8B1MzuP2fxt3luzGzT9r+Ma2IkFASBAQEgSEBAEhQUBIEBASBIQEgdGB7JL56bde4Z39n7V/qP2yIkFCSBAQEgSEBAEhQUBIEBASBIQEgX4gm9s/Mcw/a9KSX3nSJ+bCViQICAkCQoKAkCAgJAgICQJCgoCQIHAayH6rJQ9v3W/JhtZH7NS2IkFASBAQEgSEBAEhQUBIEBASBIQEgT+Hvz16zjg5Wl0ygjy4m07ml5FPQvf8dwIrEgSEBAEhQUBIEBASBIQEASFBQEgQOA1kD5YMwh6xd3JMfoWTzxee5MhiWEpIEBASBIQEASFBQEgQEBIEhASBy4Hswf5nrd5d4eQIMp+E7j9heP9nnVmRICAkCAgJAkKCgJAgICQICAkCQoJAP5D9hfL56eRnTR4jfPdZj9i2bEWCgJAgICQICAkCQoKAkCAgJAgICQK/cSC7//Gyd891ndzrumQSmk94DxxZDB8nJAgICQJCgoCQICAkCAgJAkKCQD+QXTKqW2LJmbqTD9u9e8P8MoanyVYkCAgJAkKCgJAgICQICAkCQoKAkCBwOZBdMmf8VvkIMv+sySvMfWJWa0WCgJAgICQICAkCQoKAkCAgJAgICQJvG1rh71mRICAkCAgJAkKCgJAgICQICAkCQoKAkCDwP8PgG2OWMqK+AAAAAElFTkSuQmCC">
+            </ion-thumbnail>
+            <h2>My Neighbor Totoro</h2>
+            <p>Hayao Miyazaki • 1988</p>
+            <button ion-button clear item-end (click)="OpenViewer('xx')">查看</button>
+          </ion-item>
+        -->
+    </ion-list>
+  </ion-content>

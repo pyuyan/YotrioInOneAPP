@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage,NavController, NavParams } from 'ionic-angular';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { FormBuilder,Validators } from '@angular/forms'
 
@@ -7,6 +7,7 @@ import { FormBuilder,Validators } from '@angular/forms'
  * 派工页面
  */
 
+@IonicPage()
 @Component({
   selector: 'page-SetWorkTask',
   templateUrl: 'SetWorkTask.html',

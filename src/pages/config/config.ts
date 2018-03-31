@@ -103,7 +103,7 @@ export class ConfigPage {
         });
       }else{
         this.pagedata.U9Portal='http://192.166.0.164';
-        this.pagedata.ESBPortal='http://192.166.0.155:8280';
+        this.pagedata.ESBPortal='http://192.168.0.197:8280';
         this.file.writeFile(this.file.applicationStorageDirectory+'json/','config.json','{"U9Portal":"'+this.pagedata.U9Portal+'","ESBPortal":"'+this.pagedata.ESBPortal+'"}').then(
           writeres=>{
 
@@ -115,7 +115,7 @@ export class ConfigPage {
     }).catch(error=>{
       //文件夹写入失败
       this.pagedata.U9Portal='http://192.166.0.164';
-      this.pagedata.ESBPortal='http://192.166.0.155:8280';
+      this.pagedata.ESBPortal='http://192.168.0.197:8280';
       this.file.writeFile(this.file.applicationStorageDirectory+'json/','config.json','{"U9Portal":"'+this.pagedata.U9Portal+'","ESBPortal":"'+this.pagedata.ESBPortal+'"}').then(
         writeres=>{
 

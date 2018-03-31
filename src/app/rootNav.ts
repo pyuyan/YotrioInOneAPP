@@ -83,7 +83,8 @@ import { Injectable } from "@angular/core";
       username:RootNavTool.context.GetLoginContext().UserName,
       orgid:RootNavTool.context.GetLoginContext().OrgID,
       orgcode:RootNavTool.context.GetLoginContext().OrgCode,
-      orgname:RootNavTool.context.GetLoginContext().OrgName});
+      orgname:RootNavTool.context.GetLoginContext().OrgName,
+      userpass:RootNavTool.context.GetLoginContext().UserPass});
     RootNavTool.context.ClearLoginContext();
   }
 

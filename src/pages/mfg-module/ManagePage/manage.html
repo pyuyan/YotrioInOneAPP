@@ -15,5 +15,8 @@
 
 <ion-content padding>
     <div echarts #barchart [options]="options" class="demo-chart" ></div>
+    <div echarts #pie1 [options]="totalsalemnydatas" class="carddiv1"></div>     
+    <div echarts #pie2 [options]="totalbenfitdatas" class="carddiv1"></div>     
+    <div echarts #pie3 [options]="benfitratedatas" class="carddiv1"></div>
     <button ion-button name="btn_valuechange" color="primary" block (click)="doChange(barchart)">变化</button>
 </ion-content>

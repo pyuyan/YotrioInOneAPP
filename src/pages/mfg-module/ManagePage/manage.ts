@@ -10,6 +10,7 @@ import { ContextData } from '../../../app/context';
 /**
  * 组长查询页面
  */
+@IonicPage()
 @Component({
   selector: 'page-manage',
   templateUrl: 'manage.html'
@@ -33,6 +34,132 @@ barChartInstance:any
 
   @ViewChild('barchart')
   barchartdiv:ElementRef;
+
+  totalsalemnydatas:any = {
+    backgroundColor:'#fff',
+    title : {
+       text: '累计接单金额',
+       textStyle:{fontSize:18}
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)",
+
+    },
+    legend: {
+        left:10,
+        top:35,
+        data:['外部工厂','内部工厂'],
+                textStyle: {
+            color: '#000'
+        }
+    },
+    series: [
+         
+        {
+            name:'累计接接单金额内外工厂占比',
+            type:'pie',
+            radius: ['0', '35%'],
+            center:['24%','30%'],
+            color: ['#FF9200', '#0B61A4'],
+            label: {
+                normal: {
+                    formatter: '{b}\n{d}%',
+                    position:'inner'
+                },
+          
+            },
+            data:[
+                {value:35, name:'外部工厂'},
+                {value:79, name:'内部工厂'},
+            ]
+        }
+    ]
+  };
+
+  totalbenfitdatas:any = {
+    backgroundColor:'#fff',
+    title : {
+       text: '累计毛利金额',
+       textStyle:{fontSize:18}
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)",
+
+    },
+    legend: {
+        left:10,
+        top:35,
+        data:['外部工厂','内部工厂'],
+                textStyle: {
+            color: '#000'
+        }
+    },
+    series: [
+         
+        {
+            name:'累计毛利金额内外工厂占比',
+            type:'pie',
+            radius: ['0', '35%'],
+            center:['24%','30%'],
+            color: ['#FF9200', '#0B61A4'],
+            label: {
+                normal: {
+                    formatter: '{b}\n{d}%',
+                    position:'inner'
+                },
+          
+            },
+            data:[
+                {value:35, name:'外部工厂'},
+                {value:79, name:'内部工厂'},
+            ]
+        }
+    ]
+  };    
+
+  benfitratedatas:any = {
+    backgroundColor:'#fff',
+    title : {
+       text: '毛利率',
+       textStyle:{fontSize:18}
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)",
+
+    },
+    legend: {
+        left:10,
+        top:35,
+        data:['外部工厂','内部工厂'],
+                textStyle: {
+            color: '#000'
+        }
+    },
+    series: [
+         
+        {
+            name:'毛利率内外工厂占比',
+            type:'pie',
+            radius: ['0', '35%'],
+            center:['24%','30%'],
+            color: ['#FF9200', '#0B61A4'],
+            label: {
+                normal: {
+                    formatter: '{b}\n{d}%',
+                    position:'inner'
+                },
+          
+            },
+            data:[
+                {value:35, name:'外部工厂'},
+                {value:79, name:'内部工厂'},
+            ]
+        }
+    ]
+  };   
 
   options = {
     legend: {
@@ -81,7 +208,7 @@ barChartInstance:any
             position: 'insideLeft'
           }
         },
-        data: [320, 302, 341, 374, 390, 450]
+        data: [320, 302, 341, 374, 390, 1000]
       },
       {
         name: '报工数量',
@@ -156,9 +283,11 @@ barChartInstance:any
 
 
   doChange(obj:any){
-    this.options.series.forEach(value=>{
-        value.data=[Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000)];
-    });
+    //this.options.series.forEach(value=>{
+    //    value.data=[Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000),Math.ceil(Math.random()*1000)];
+    //});
+
+    this.options.series[0].data[0] = Math.ceil(Math.random()*1000);
     this.barChartInstance = this.echartsvr.echarts.init(this.barchartdiv.nativeElement.querySelector('div'));
     this.barChartInstance.setOption(this.options);
   }
